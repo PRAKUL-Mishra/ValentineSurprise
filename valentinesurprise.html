@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Surprise</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            color: #d6336c;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 5%;
+            position: relative;
+        }
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(145deg, #ff6b81, #ff99ac);
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: darkred;
+        }
+        .ribbon {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: darkred;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.5s, opacity 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .letter {
+            width: 80%;
+            max-width: 600px;
+            min-height: 300px;
+            background: #fff8e1;
+            position: relative;
+            margin: 50px auto;
+            text-align: left;
+            padding: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            line-height: 1.8;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            border-radius: 15px;
+            border: 4px solid #d6336c;
+            background: #fdf3e7;
+            background-image: linear-gradient(rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%), url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            background-size: cover;
+            background-blend-mode: multiply;
+            overflow-y: auto;
+        }
+        .letter.open {
+            opacity: 1;
+        }
+        .signature {
+            text-align: right;
+            font-size: 20px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" onclick="handleClick()">
+        <div class="envelope" id="envelope">
+            <div class="heart">❤️</div>
+            <div class="ribbon" id="ribbon">🎀</div>
+        </div>
+    </div>
+    <div class="letter" id="letter">
+        <div class="letter-content">
+            <p><strong>Happy Valentine’s Day, baby 🫶🏻</strong></p>
+            <p>Babe, I just wanna say how lucky I am to have you. You’re the prettiest, most amazing person ever, and I appreciate you more than I can even explain.</p>
+            <p>You’re everything I could’ve ever asked for—my favorite person fr🥰. I hate that we’re apart today, and I wish I could do more for you, but I hope this at least makes you smile.</p>
+            <p>I miss you so much, baby. A lot. Can’t wait to finally see you and make up for all this time apart. Hope you have the best day. 🫶🏻</p>
+            <p class="signature">- Prakul (your so-called boyfriend)</p>
+        </div>
+    </div>
+    
+    <script>
+        let clickCount = 0;
+
+        function handleClick() {
+            clickCount++;
+            
+            // Ribbon effect
+            if (clickCount === 1) {
+                document.getElementById("ribbon").style.transform = "scale(0.5)";
+                document.getElementById("ribbon").style.opacity = "0";
+            } 
+            // Envelope moves up
+            else if (clickCount === 2) {
+                document.getElementById("envelope").style.transform = "translateY(-30px)";
+            } 
+            // Letter opens
+            else if (clickCount === 3) {
+                let letter = document.getElementById("letter");
+                letter.classList.add("open");
+                window.scrollTo({ top: letter.offsetTop, behavior: 'smooth' });
+                
+                // Reset for repeated interaction
+                clickCount = 0;
+            }
+        }
+    </script>
+</body>
+</html>
